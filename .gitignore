@@ -1,0 +1,6 @@
+/tasklist/.settings
+/tasklist/.classpath
+/tasklist/.project
+.settings
+*.classpath
+*.project
