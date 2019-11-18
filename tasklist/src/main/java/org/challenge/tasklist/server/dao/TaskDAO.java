@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 
 import org.challenge.tasklist.model.enumeration.StatusEnum;
 import org.challenge.tasklist.model.jpa.Task;
+import org.challenge.tasklist.server.rest.exception.TaskNotFoundException;
 import org.slf4j.Logger;
 
 public class TaskDAO {
@@ -61,7 +62,7 @@ public class TaskDAO {
 		Task task = em.find(Task.class, uniqueId);
 		
 		if(task == null) {
-			throw new Exception("Task with uniqueId "+uniqueId+" not founded");
+			throw new TaskNotFoundException("Task with uniqueId "+uniqueId+" not founded");
 		}
 		
 		task.setStatus(StatusEnum.CLOSE);

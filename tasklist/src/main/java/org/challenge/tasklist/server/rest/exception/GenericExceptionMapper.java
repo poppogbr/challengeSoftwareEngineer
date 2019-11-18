@@ -44,6 +44,8 @@ public class GenericExceptionMapper implements ExceptionMapper<Throwable> {
     private String getExceptionCode(Throwable ex) {
     	if(ex instanceof FieldRequiredException) {
     		return FieldRequiredException.getCode();
+    	} else if(ex instanceof TaskNotFoundException) {
+    		return TaskNotFoundException.getCode();
     	}
     	return "INTERNAL_ERROR";
     }

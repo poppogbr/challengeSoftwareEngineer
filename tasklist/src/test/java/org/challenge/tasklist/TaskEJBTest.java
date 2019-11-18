@@ -12,6 +12,7 @@ import org.challenge.tasklist.server.businesslogic.TaskEJB;
 import org.challenge.tasklist.server.businesslogic.UserEJB;
 import org.challenge.tasklist.server.dao.TaskDAO;
 import org.challenge.tasklist.server.rest.exception.FieldRequiredException;
+import org.challenge.tasklist.server.rest.exception.TaskNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -36,6 +37,7 @@ class TaskEJBTest extends AbstractTest {
 	@Test
 	void testAllOpenTaskForSpecificUserReturnNoRecord() {
 		List<Task> tasksMock = new ArrayList<>();
+		
 		Mockito.when(taskDAO.allOpenTaskForSpecificUser(Mockito.anyLong())).thenReturn(tasksMock);
 		
 		try {
@@ -73,6 +75,14 @@ class TaskEJBTest extends AbstractTest {
 	@Test
 	void testCloseTaskNullUniqueId() {
 		assertThrows(FieldRequiredException.class, () -> taskEJB.closeTask(null));
+	}
+	
+	@Test
+	void testCloseTaskNotFound() {
+		assertThrows(TaskNotFoundException.class, () -> {
+			Mockito.doThrow(new TaskNotFoundException()).when(taskDAO).closeTask(1L);
+			taskEJB.closeTask(1L);
+		});
 	}
 	
 	@Test
