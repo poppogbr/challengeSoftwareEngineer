@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="4444161e-a986-4e3a-9f83-3a5314acc9a2" activeEnvironment="Default" name="TaskList" resourceRoot="" soapui-version="5.5.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="8f5225b2-b968-48a2-8770-be0fb0f1f6df" wadlVersion="http://wadl.dev.java.net/2009/02" name="application" type="rest" basePath="/task-list/rest/" definitionUrl="http://hea19541:8080/task-list/rest/application.wadl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://hea19541:8080/task-list/rest/application.wadl"><con:part><con:url>http://hea19541:8080/task-list/rest/application.wadl</con:url><con:content><![CDATA[<application xmlns="http://wadl.dev.java.net/2009/02">
+  <doc jersey:generatedBy="Jersey: 2.29.payara-p5 2019-08-16 16:59:07" xmlns:jersey="http://jersey.java.net/"/>
+  <doc jersey:hint="This is simplified WADL with user and core resources only. To get full WADL with extended resources use the query parameter detail. Link: http://hea19541:8080/task-list/rest/application.wadl?detail=true" xmlns:jersey="http://jersey.java.net/"/>
+  <grammars>
+    <include href="application.wadl/xsd0.xsd">
+      <doc title="Generated" xml:lang="en"/>
+    </include>
+  </grammars>
+  <resources base="http://hea19541:8080/task-list/rest/">
+    <resource path="task">
+      <resource path="all/open/{userId}">
+        <param name="userId" style="template" type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        <method id="getAllOpenTaskToSpecificUser" name="GET">
+          <response>
+            <representation mediaType="application/json"/>
+          </response>
+        </method>
+      </resource>
+      <resource path="detail/{taskId}">
+        <param name="taskId" style="template" type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        <method id="getDetailsOfTask" name="GET">
+          <response>
+            <representation mediaType="application/json"/>
+          </response>
+        </method>
+      </resource>
+      <resource path="close/{taskId}">
+        <param name="taskId" style="template" type="xs:long" xmlns:xs="http://www.w3.org/2001/XMLSchema"/>
+        <method id="closeTask" name="PUT">
+          <response>
+            <representation mediaType="*/*"/>
+          </response>
+        </method>
+      </resource>
+      <resource path="new">
+        <method id="createNewTask" name="POST">
+          <request>
+            <representation mediaType="application/json"/>
+          </request>
+          <response>
+            <representation mediaType="application/json"/>
+          </response>
+        </method>
+      </resource>
+    </resource>
+  </resources>
+</application>]]></con:content><con:type>http://wadl.dev.java.net/2009/02</con:type></con:part><con:part><con:url>http://hea19541:8080/task-list/rest/application.wadl/xsd0.xsd</con:url><con:content><![CDATA[<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="taskDTO">
+    <xs:sequence>
+      <xs:element name="description" type="xs:string" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="status" type="statusEnum" minOccurs="0"/>
+      <xs:element name="uniqueId" type="xs:long" minOccurs="0"/>
+      <xs:element name="usersEnabled" type="userDTO" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="userDTO">
+    <xs:sequence>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="userId" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="statusEnum">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OPEN"/>
+      <xs:enumeration value="CLOSE"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://hea19541:8080</con:endpoint></con:endpoints><con:resource name="task" path="task" id="dac8870f-103e-48ba-8967-0465ba50a3de"><con:settings/><con:parameters/><con:resource name="all/open/{userId}" path="all/open/{userId}" id="e6fe3c05-eed0-4751-ae26-07f82a51f362"><con:settings/><con:parameters><con:parameter><con:name>userId</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:long</con:type><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET - getAllOpenTaskToSpecificUser" id="ab586b04-e5d1-4eaa-bccc-6b0c92f7c29a" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" id="2622d19f-2180-4192-b988-c89c3248951d" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://hea19541:8080</con:endpoint><con:request/><con:originalUri>http://hea19541/task-list/rest/task/all/open/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="userId" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource><con:resource name="new" path="new" id="adbfe278-ce59-4616-84bc-3039cbafc056"><con:settings/><con:parameters/><con:method name="POST - createNewTask" id="fa17bd43-f4a2-4bb5-800e-3e56aabbc136" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" id="c70a6e51-36c1-4682-ad80-aa1dfa1ef745" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://hea19541:8080</con:endpoint><con:request>{
+	"name":"task1",
+	"description":"detail of task1",
+	"status":"OPEN",
+	"usersEnabled": [
+		{
+			"firstName":"John",
+			"lastName":"Doe"
+		}
+	]
+}</con:request><con:originalUri>http://hea19541/task-list/rest/task/new</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder/></con:request></con:method></con:resource><con:resource name="close/{taskId}" path="close/{taskId}" id="66e1a61e-b1b6-47c4-b62e-56cbdb29acf9"><con:settings/><con:parameters><con:parameter><con:name>taskId</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:long</con:type><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="PUT - closeTask" id="923c07e2-f42e-4654-ad92-d422abfa8615" method="PUT"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>*/*</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" id="c66a73a9-ef45-4b40-b5be-6853ba236aaf" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://hea19541:8080</con:endpoint><con:request/><con:originalUri>http://hea19541/task-list/rest/task/close/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="taskId" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource><con:resource name="detail/{taskId}" path="detail/{taskId}" id="0793795b-fc65-49f4-a149-25f1e0f00c28"><con:settings/><con:parameters><con:parameter><con:name>taskId</con:name><con:value xsi:nil="true"/><con:style>TEMPLATE</con:style><con:type xmlns:xs="http://www.w3.org/2001/XMLSchema">xs:long</con:type><con:default xsi:nil="true"/></con:parameter></con:parameters><con:method name="GET - getDetailsOfTask" id="3cb88beb-a0b9-4f14-beb0-264afcfb5b5a" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE" id=""><con:mediaType>application/json</con:mediaType><con:params/><con:element xsi:nil="true"/><con:description xsi:nil="true"/></con:representation><con:request name="Request 1" id="83df5f09-7856-482e-9fe7-baec0d5230ef" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:endpoint>http://hea19541:8080</con:endpoint><con:request/><con:originalUri>http://hea19541/task-list/rest/task/detail/1</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="taskId" value="2" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource></con:resource></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

@@ -17,6 +17,7 @@ public class RestApplication extends Application {
         classes = Collections.unmodifiableSet(s);
         
         s.add(TaskService.class);
+        s.add(InstallerRestService.class);
         
         s.add(GenericExceptionMapper.class);
   	}
