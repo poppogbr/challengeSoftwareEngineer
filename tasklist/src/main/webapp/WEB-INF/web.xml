@@ -7,15 +7,15 @@
 
 	<servlet>
 		<display-name>JAX-RS Servlet</display-name>
-		<servlet-name>it.hcp.hcp4i.sissprocnotif.server.web.rs.RestApplication</servlet-name>
+		<servlet-name>org.challenge.tasklist.server.rest.RestApplication</servlet-name>
 		<!-- Register JAX-RS Application, if needed. -->
 		<init-param>
 			<param-name>javax.ws.rs.Application</param-name>
-			<param-value>org.challenge.tasklist.rest.RestApplication</param-value>
+			<param-value>org.challenge.tasklist.server.rest.RestApplication</param-value>
 		</init-param>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>org.challenge.tasklist.rest.RestApplication</servlet-name>
+		<servlet-name>org.challenge.tasklist.server.rest.RestApplication</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 

@@ -10,6 +10,8 @@
 	<name>tasklist</name>
 
 	<properties>
+    	<maven.compiler.source>1.8</maven.compiler.source>
+    	<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
@@ -26,6 +28,11 @@
 			<version>3.9</version>
 		</dependency>
 		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-text</artifactId>
+			<version>1.7</version>
+		</dependency>
+		<dependency>
 		    <groupId>org.eclipse.persistence</groupId>
 		    <artifactId>eclipselink</artifactId>
 		    <version>2.7.5</version>
@@ -35,12 +42,55 @@
 		    <artifactId>org.eclipse.persistence.jpa</artifactId>
 		    <version>2.7.5</version>
 		</dependency>
-
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
+		    <groupId>org.slf4j</groupId>
+		    <artifactId>slf4j-api</artifactId>
+		    <version>1.7.29</version>
 		</dependency>
+		<dependency>
+		    <groupId>net.sf.dozer</groupId>
+		    <artifactId>dozer</artifactId>
+		    <version>5.5.1</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-core</artifactId>
+		    <version>3.1.0</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+		    <groupId>org.mockito</groupId>
+		    <artifactId>mockito-junit-jupiter</artifactId>
+		    <version>3.1.0</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+        	<groupId>org.junit.jupiter</groupId>
+	        <artifactId>junit-jupiter-api</artifactId>
+	        <version>5.5.2</version>
+	        <scope>test</scope>
+	    </dependency>
+		<dependency>
+		    <groupId>org.junit.jupiter</groupId>
+		    <artifactId>junit-jupiter-engine</artifactId>
+		    <version>5.5.2</version>
+		    <scope>test</scope>
+		</dependency>
+		<dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>1.1.1</version>
+            <scope>test</scope>
+        </dependency>
 	</dependencies>
+	
+	<build>
+   		<plugins>
+	        <plugin>
+	            <groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-surefire-plugin</artifactId>
+	            <version>2.22.1</version>
+	        </plugin>
+	    </plugins>
+	</build>
 </project>

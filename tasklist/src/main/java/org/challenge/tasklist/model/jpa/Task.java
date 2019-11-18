@@ -10,7 +10,10 @@ import java.util.List;
 
 @Entity
 @Table(name="TASK")
-@NamedQuery(name="Task.findAll", query="SELECT t FROM Task t")
+@NamedQueries({
+	@NamedQuery(name="Task.findAllTasksForSpecificUser", query="SELECT t FROM Task t join t.users u where t.status = :status and u.userId = :userId"),
+	@NamedQuery(name="Task.retrieveDetails", query="SELECT t FROM Task t where t.uniqueId = :uniqueId"),
+})
 public class Task implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +21,7 @@ public class Task implements Serializable {
 	@SequenceGenerator(name="TASK_UNIQUEID_GENERATOR", sequenceName="SQ_TASK")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="TASK_UNIQUEID_GENERATOR")
 	@Column(name="UNIQUE_ID", unique=true, nullable=false, precision=15)
-	private long uniqueId;
+	private Long uniqueId;
 
 	@Column(name="DETAIL_DESCRIPTION", length=4000)
 	private String detailDescription;
@@ -30,17 +33,26 @@ public class Task implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private StatusEnum status;
 
-	@ManyToMany(mappedBy="tasks")
+	@ManyToMany(cascade= {CascadeType.PERSIST, CascadeType.MERGE}, fetch=FetchType.LAZY)
+	@JoinTable(
+		name="USER_TASK_ENABLED"
+		, inverseJoinColumns={
+			@JoinColumn(name="USER_ID", nullable=false)
+			}
+		, joinColumns={
+			@JoinColumn(name="TASK_ID", nullable=false)
+			}
+		)
 	private List<User> users;
 
 	public Task() {
 	}
 
-	public long getUniqueId() {
+	public Long getUniqueId() {
 		return this.uniqueId;
 	}
 
-	public void setUniqueId(long uniqueId) {
+	public void setUniqueId(Long uniqueId) {
 		this.uniqueId = uniqueId;
 	}
 

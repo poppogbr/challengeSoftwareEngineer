@@ -6,8 +6,7 @@ import java.util.List;
 
 
 @Entity
-@Table(name="USER")
-@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+@Table(name="\"USER\"")
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -15,7 +14,7 @@ public class User implements Serializable {
 	@SequenceGenerator(name="USER_USERID_GENERATOR", sequenceName="SQ_USER")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_USERID_GENERATOR")
 	@Column(name="USER_ID", unique=true, nullable=false, precision=15)
-	private long userId;
+	private Long userId;
 
 	@Column(name="FIRST_NAME", nullable=false, length=100)
 	private String firstName;
@@ -23,26 +22,17 @@ public class User implements Serializable {
 	@Column(name="LAST_NAME", nullable=false, length=100)
 	private String lastName;
 
-	@ManyToMany
-	@JoinTable(
-		name="USER_TASK_ENABLED"
-		, joinColumns={
-			@JoinColumn(name="USER_ID", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="TASK_ID", nullable=false)
-			}
-		)
+	@ManyToMany(mappedBy="users", fetch=FetchType.LAZY)
 	private List<Task> tasks;
 
 	public User() {
 	}
 
-	public long getUserId() {
+	public Long getUserId() {
 		return this.userId;
 	}
 
-	public void setUserId(long userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 

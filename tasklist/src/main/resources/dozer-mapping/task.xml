@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://dozer.sourceforge.net
+      http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping>
+        <class-a>org.challenge.tasklist.model.jpa.Task</class-a>
+        <class-b>org.challenge.tasklist.model.dto.TaskDTO</class-b>
+        <field>
+            <a>uniqueId</a>
+            <b>uniqueId</b>
+        </field>
+        <field>
+            <a>name</a>
+            <b>name</b>
+        </field>
+        <field>
+            <a>status</a>
+            <b>status</b>
+        </field>
+        <field>
+            <a>detailDescription</a>
+            <b>description</b>
+        </field>
+        <field>
+            <a>users</a>
+            <b>usersEnabled</b>
+        </field>
+    </mapping>
+</mappings>
